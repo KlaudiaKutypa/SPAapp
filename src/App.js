@@ -52,9 +52,9 @@ function App() {
           </TableHead>
           <TableBody>
           {products.data.filter(ev => {
-            if (number == "") {
+            if (number === "") {
             return ev}
-            else if (ev.id == number) {
+            else if (ev.id === number) {
             return ev}}).slice(indexOfFirst, indexOfLast).map((prod) => (
           <TableRow key={prod.id}>
               <TableCell align="center" sx = {{backgroundColor: prod.color, fontSize: "1.1rem"}}>{prod.id}</TableCell>
