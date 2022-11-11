@@ -50,7 +50,6 @@ function App() {
               <TableCell align="center" sx={{ fontWeight: 700, fontSize: "1.1rem" }}>ID</TableCell>
               <TableCell align="center" sx={{ fontWeight: 700, fontSize: "1.1rem" }}>Name</TableCell>
               <TableCell align="center" sx={{ fontWeight: 700, fontSize: "1.1rem" }}>Year</TableCell>
-              <TableCell align="center" sx={{ fontWeight: 700, fontSize: "1.1rem" }}>Color</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -63,7 +62,6 @@ function App() {
             <TableCell align="center" sx = {{backgroundColor: prod.color, fontSize: "1.1rem"}}>{prod.id}</TableCell>
             <TableCell align="center" sx = {{backgroundColor: prod.color, fontSize: "1.1rem"}}>{prod.name}</TableCell>
             <TableCell align="center" sx = {{backgroundColor: prod.color, fontSize: "1.1rem"}}>{prod.year}</TableCell>
-            <TableCell align="center" sx = {{backgroundColor: prod.color, fontSize: "1.1rem"}}>{prod.color}</TableCell>
             </TableRow>
             ))}
           </TableBody>
