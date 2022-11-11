@@ -3,37 +3,39 @@ import './App.css';
 import {Box, TextField} from '@mui/material';
 import {TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper} from '@mui/material';
 import AppPagination from './AppPagination';
+export default App;
 
+const API = "https://reqres.in/api/products";
 
 function App() {
 
-  const API = "https://reqres.in/api/products";
-  const [products, setProducts] = useState([]);
+  const [all, setAll] = useState([]);
 
-  const handleSeeProducts = () => {
+  const handleSeeOrganizations = () => {
     fetch(`${API}`)
     .then((response) => response.json())
-    .then((product) => setProducts(product));
-    }
-  console.log(products.data)
+    .then((organizations) => setAll(organizations.data));
+}
+
+    useEffect(() => {
+        handleSeeOrganizations();
+        },[]);
+
+  console.log(all)
+
+    //Input 
+    const [number, setNumber]=useState('');
  
-  useEffect(() => {
-    handleSeeProducts();
-    },[]);
-
-  //Input 
-  const [number, setNumber]=useState('');
- 
-  //Pagination
-   const [currentPage, setCurrentPage] = useState(1);
-  const [perPage, setPerPage] = useState(5);
-
-  const indexOfLast = currentPage * perPage;
-  const indexOfFirst = indexOfLast - perPage;
-
-  const handleChange = (event, value) => {
-    setCurrentPage(value);
-  };
+    //Pagination
+     const [currentPage, setCurrentPage] = useState(1);
+    const [perPage, setPerPage] = useState(5);
+  
+    const indexOfLast = currentPage * perPage;
+    const indexOfFirst = indexOfLast - perPage;
+  
+    const handleChange = (event, value) => {
+      setCurrentPage(value);
+    };
 
   return (
     <div className="App">
@@ -51,16 +53,17 @@ function App() {
             </TableRow>
           </TableHead>
           <TableBody>
-          {products.data.filter(ev => {
+         {all.filter(ev => {
             if (number === "") {
             return ev}
             else if (ev.id === number) {
             return ev}}).slice(indexOfFirst, indexOfLast).map((prod) => (
-          <TableRow key={prod.id}>
-              <TableCell align="center" sx = {{backgroundColor: prod.color, fontSize: "1.1rem"}}>{prod.id}</TableCell>
-              <TableCell align="center" sx = {{backgroundColor: prod.color, fontSize: "1.1rem"}}>{prod.name}</TableCell>
-              <TableCell align="center" sx = {{backgroundColor: prod.color, fontSize: "1.1rem"}}>{prod.year}</TableCell>
-          </TableRow>))}
+            <TableRow key={prod.id}>
+            <TableCell align="center" sx = {{backgroundColor: prod.color, fontSize: "1.1rem"}}>{prod.name}</TableCell>
+            <TableCell align="center" sx = {{backgroundColor: prod.color, fontSize: "1.1rem"}}>{prod.year}</TableCell>
+            <TableCell align="center" sx = {{backgroundColor: prod.color, fontSize: "1.1rem"}}>{prod.color}</TableCell>
+            </TableRow>
+            ))}
           </TableBody>
         </Table>
         </TableContainer>
@@ -70,4 +73,3 @@ function App() {
   );
 }
 
-export default App;
